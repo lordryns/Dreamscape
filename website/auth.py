@@ -30,9 +30,12 @@ def register():
                     password = password,
                     name = username # optional
                 )
+                
+                
                 is_error = False
                 is_success = True 
-                return redirect(url_for("views.home"))
+                
+                return redirect(url_for("views.feed"))
             except Exception as e:
                 is_error = True
                 error_message = str(e)

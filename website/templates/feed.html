@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Feed{% endblock %}
+
+{% block content %}
+<style>
+    .post {
+        background-color: #ffffff;
+        margin-bottom: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .post-author {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    .post-date {
+        color: #777777;
+        font-size: 0.9rem;
+    }
+    .post-content {
+        margin-bottom: 10px;
+    }
+    .post-actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 class="mb-4">Home Feed</h2>
+            
+            {% for post in posts %}
+            <div class="post">
+                <div class="post-header">
+                    <span class="post-author">{{ post.author }}</span>
+                    <span class="post-date">{{ post.date }}</span>
+                </div>
+                <div class="post-content">
+                    <p>{{ post.content }}</p>
+                </div>
+                <div class="post-actions">
+                    <a href="#" class="btn btn-primary">Like</a>
+                    <a href="#" class="btn btn-secondary">Comment</a>
+                </div>
+            </div>
+            {% endfor %}
+            
+            {% if not posts %}
+            <p>No posts available.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
