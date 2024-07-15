@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
+import base64
+import uuid
 
 auth = Blueprint( "auth", __name__)
 
@@ -17,10 +19,13 @@ def register():
         email = request.form.get("email")
         password = request.form.get("password")
 
+        my_uuid = uuid.uuid4()
+        base64_uuid = base64.urlsafe_b64encode(my_uuid.bytes).decode('utf-8').rstrip('=')
+
         if (len(password) >= 8):
             try:
                 result = account.create(
-                    user_id = str(uuid.uuid4),
+                    user_id = str(base64_uuid),
                     email = email,
                     password = password,
                     name = username # optional
