@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+    }
+    .signup-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .signup-form {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .signup-form h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .signup-form input {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 100%;
+    }
+    .signup-form input:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0,123,255,0.5);
+    }
+    .signup-form button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        font-size: 1.2rem;
+    }
+    .signup-form .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+    .signup-form .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+    .signup-form .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+    .signup-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+</style>
+
+<div class="signup-container">
+    <div class="row w-100">
+        <div class="col-md-6 d-none d-md-block">
+            <!-- Image from Unsplash -->
+            <img src="https://source.unsplash.com/600x400/?technology" alt="Sign Up" class="signup-image">
+        </div>
+        <div class="col-md-6">
+            <div class="signup-form">
+                <h2>Create Your Account</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+                <div class="text-center mt-3">
+                    <p>Already have an account? <a href="/login" class="btn btn-secondary">Log In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
