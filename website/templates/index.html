@@ -16,9 +16,16 @@
     .hero h1 {
         font-size: 4rem;
         font-weight: bold;
+        margin-bottom: 20px;
     }
     .hero p {
         font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+    .hero .btn {
+        margin: 5px;
+        padding: 15px 30px;
+        font-size: 1.2rem;
     }
     .features {
         padding: 50px 0;
@@ -27,6 +34,13 @@
     .features .icon {
         font-size: 3rem;
         color: #007bff;
+    }
+    .features h3 {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .features p {
+        margin-bottom: 30px;
     }
     .contact-form {
         background-color: #343a40;
@@ -40,26 +54,40 @@
     .contact-form input, .contact-form textarea {
         margin-bottom: 15px;
     }
+    .section-heading {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .section-heading h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+    .section-heading p {
+        font-size: 1.2rem;
+        color: #6c757d;
+    }
 </style>
 
 <!-- Hero Section -->
 <section class="hero text-center d-flex flex-column justify-content-center align-items-center">
-    <h1>Welcome to IdeaHub</h1>
-    <p>Share and discover innovative ideas from around the world</p>
-    <a href="#services" class="btn btn-light btn-lg mt-3">Explore Ideas</a>
-    <a href="/signup" class="btn btn-primary btn-lg mt-3">Sign Up</a>
-    <a href="/login" class="btn btn-secondary btn-lg mt-3">Log In</a>
+    <h1>Welcome to IdeaHub!</h1>
+    <p>Share and discover creative ideas with a community of dreamers and innovators.</p>
+    <a href="/signup" class="btn btn-primary btn-lg">Join Now</a>
+    <a href="/login" class="btn btn-secondary btn-lg">Log In</a>
 </section>
 
 <!-- About Section -->
 <section id="about" class="container py-5">
+    <div class="section-heading">
+        <h2>About IdeaHub</h2>
+        <p>At IdeaHub, we celebrate creativity and innovation. Our platform is designed for thinkers, dreamers, and doers to share their ideas, collaborate, and bring their visions to life.</p>
+    </div>
     <div class="row">
         <div class="col-md-6">
-            <h2>About IdeaHub</h2>
-            <p>IdeaHub is a vibrant social platform where creative minds can share, discover, and collaborate on innovative ideas. Whether it's tech-related or a general concept, IdeaHub is the place to bring your thoughts to life and connect with like-minded individuals.</p>
-        </div>
-        <div class="col-md-6">
             <img src="https://images.unsplash.com/photo-1498075702570-5d8f2f39c169?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="About IdeaHub" class="img-fluid rounded shadow">
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+            <p>Join our community of passionate individuals who believe that great ideas deserve to be heard. Whether you're into tech, arts, or anything in between, IdeaHub is your platform to connect, inspire, and innovate.</p>
         </div>
     </div>
 </section>
@@ -67,23 +95,25 @@
 <!-- Features Section -->
 <section id="services" class="features text-center py-5 bg-light">
     <div class="container">
-        <h2>Our Features</h2>
-        <p class="lead">Explore what you can do on IdeaHub</p>
+        <div class="section-heading">
+            <h2>Discover What You Can Do</h2>
+            <p>Explore the possibilities on IdeaHub</p>
+        </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="icon my-3"><i class="fas fa-lightbulb"></i></div>
-                <h3>Share Ideas</h3>
-                <p>Post your innovative ideas and get feedback from the community.</p>
+                <h3>Share Your Ideas</h3>
+                <p>From wild concepts to refined plans, share what inspires you.</p>
             </div>
             <div class="col-md-4">
                 <div class="icon my-3"><i class="fas fa-users"></i></div>
-                <h3>Collaborate</h3>
-                <p>Find like-minded individuals to collaborate on exciting projects.</p>
+                <h3>Collaborate Effortlessly</h3>
+                <p>Connect with others to turn your ideas into collaborative projects.</p>
             </div>
             <div class="col-md-4">
                 <div class="icon my-3"><i class="fas fa-comments"></i></div>
-                <h3>Engage</h3>
-                <p>Join discussions and engage with the community on various topics.</p>
+                <h3>Engage with the Community</h3>
+                <p>Join discussions, give feedback, and discover new perspectives.</p>
             </div>
         </div>
     </div>
@@ -91,24 +121,26 @@
 
 <!-- Contact Section -->
 <section id="contact" class="container py-5">
+    <div class="section-heading">
+        <h2>Connect with Us</h2>
+        <p>We're here to answer your questions and hear your ideas. Reach out to us!</p>
+    </div>
     <div class="row">
         <div class="col-md-6">
-            <h2>Contact Us</h2>
-            <p>If you have any questions or need further information, please feel free to contact us. We're here to help!</p>
             <form class="contact-form">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
+                    <label for="name" class="form-label">Your Name</label>
                     <input type="text" class="form-control" id="name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">Your Email</label>
                     <input type="email" class="form-control" id="email" required>
                 </div>
                 <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
+                    <label for="message" class="form-label">Your Message</label>
                     <textarea class="form-control" id="message" rows="4" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
         </div>
         <div class="col-md-6">
