@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, url_for
 
 auth = Blueprint( "auth", __name__)
 
@@ -18,11 +18,11 @@ def register():
         if (len(password) >= 8):
             is_error = False
             is_success = True 
-            redirect("url_for()")
+            redirect(url_for("views.home"))
         else:
             error_message = "Password must be at least 8 characters long."
             is_error = True
 
 
         print(username, email, password)
-    return render_template("register.html", error_message=error_message, is_error=is_error)
+    return render_template("register.html", error_message=error_message, is_error=is_error, is_success=is_success)
