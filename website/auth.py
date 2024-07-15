@@ -9,5 +9,7 @@ def register():
         email = request.form.get("email")
         password = request.form.get("password")
 
+        
+
         print(username, email, password)
     return render_template("register.html")
