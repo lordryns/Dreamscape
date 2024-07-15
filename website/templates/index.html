@@ -8,6 +8,15 @@
         font-family: 'Arial', sans-serif;
         background-color: #f8f9fa;
     }
+    .navbar {
+        background-color: #343a40;
+    }
+    .navbar-brand, .nav-link {
+        color: white;
+    }
+    .nav-link:hover {
+        color: #007bff;
+    }
     .hero {
         background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') no-repeat center center;
         background-size: cover;
@@ -64,6 +73,35 @@
         border-radius: 5px;
     }
 </style>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">TOP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary ms-2" href="/signup">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-secondary ms-2" href="/login">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <!-- Hero Section -->
 <section class="hero text-center d-flex flex-column justify-content-center align-items-center">
@@ -137,4 +175,5 @@
         </div>
     </div>
 </section>
+
 {% endblock %}
