@@ -6,7 +6,7 @@ auth = Blueprint( "auth", __name__)
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def register():
-    from . import account
+    from . import account, client
 
     error_message = ""
     is_error = False 
@@ -31,7 +31,8 @@ def register():
                     name = username # optional
                 )
                 
-                
+                session_token = account.create_email_password_session(email, password)['session']
+                client.set_session(session_token)
                 is_error = False
                 is_success = True 
                 

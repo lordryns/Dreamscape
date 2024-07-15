@@ -10,5 +10,10 @@ def home():
 @views.route('/feed')
 def feed():
     from . import account
-   
+
+    try:
+        user = account.get()
+        print(user)
+    except Exception as e:
+        print(e)  
     return render_template("feed.html")
