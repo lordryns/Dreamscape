@@ -4,64 +4,189 @@
 
 {% block content %}
 <style>
-    .post {
-        background-color: #ffffff;
-        margin-bottom: 20px;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--body-bg-color);
+        color: var(--body-text-color);
+        transition: background-color 0.3s, color 0.3s;
     }
-    .post-header {
+    .navbar {
+        background-color: var(--nav-bg-color);
+        padding: 10px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 10px;
+        transition: background-color 0.3s, color 0.3s;
     }
-    .post-author {
+    .navbar a {
+        color: var(--nav-text-color);
+        margin: 0 10px;
+        text-decoration: none;
         font-weight: bold;
-        font-size: 1.2rem;
     }
-    .post-date {
-        color: #777777;
-        font-size: 0.9rem;
+    .navbar a:hover {
+        text-decoration: underline;
+    }
+    .toggle-switch {
+        cursor: pointer;
+        font-size: 1.2em;
+        color: var(--nav-text-color);
+    }
+    .container {
+        padding: 20px;
+    }
+    .post {
+        background-color: var(--post-bg-color);
+        color: var(--post-text-color);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .post-header {
+        display: flex;
+        align-items: center;
+    }
+    .post-header img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
     }
     .post-content {
+        margin-top: 10px;
+    }
+    .post-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .post-footer button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .post-footer button:hover {
+        background-color: #0056b3;
+    }
+    .sidebar {
+        background-color: var(--sidebar-bg-color);
+        color: var(--sidebar-text-color);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .sidebar h3 {
+        margin-top: 0;
+    }
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .sidebar ul li {
         margin-bottom: 10px;
     }
-    .post-actions {
-        display: flex;
-        justify-content: flex-end;
+    .sidebar ul li a {
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.3s;
+    }
+    .sidebar ul li a:hover {
+        text-decoration: underline;
+    }
+    :root {
+        --body-bg-color: #f0f8ff;
+        --body-text-color: #000;
+        --nav-bg-color: #333;
+        --nav-text-color: #fff;
+        --post-bg-color: #fff;
+        --post-text-color: #000;
+        --sidebar-bg-color: #fff;
+        --sidebar-text-color: #000;
+    }
+    [data-theme="dark"] {
+        --body-bg-color: #111;
+        --body-text-color: #ddd;
+        --nav-bg-color: #222;
+        --nav-text-color: #ddd;
+        --post-bg-color: #333;
+        --post-text-color: #ddd;
+        --sidebar-bg-color: #333;
+        --sidebar-text-color: #ddd;
     }
 </style>
 
+<!-- Navbar -->
+<nav class="navbar">
+    <div>
+        <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/notifications">Notifications</a>
+        <a href="/messages">Messages</a>
+        <a href="/settings">Settings</a>
+    </div>
+    <div>
+        <a href="/login">Log In</a>
+        <a href="/signup">Sign Up</a>
+        <span class="toggle-switch" onclick="toggleTheme()">🌙</span>
+    </div>
+</nav>
 
-
-
-<div class="container mt-5">
+<div class="container">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h2 class="mb-4">Welcome back, {{session.username}}</h2>
-            
-            {% for post in posts %}
+        <!-- Main Feed -->
+        <div class="col-md-8">
             <div class="post">
                 <div class="post-header">
-                    <span class="post-author">{{ post.author }}</span>
-                    <span class="post-date">{{ post.date }}</span>
+                    <img src="https://via.placeholder.com/50" alt="User Avatar">
+                    <div>
+                        <h5>John Doe</h5>
+                        <small>2 hours ago</small>
+                    </div>
                 </div>
                 <div class="post-content">
-                    <p>{{ post.content }}</p>
+                    <p>This is a sample post content. Share your ideas, projects, and collaborate with others!</p>
                 </div>
-                <div class="post-actions">
-                    <a href="#" class="btn btn-primary">Like</a>
-                    <a href="#" class="btn btn-secondary">Comment</a>
+                <div class="post-footer">
+                    <button>Like</button>
+                    <button>Comment</button>
+                    <button>Share</button>
                 </div>
             </div>
-            {% endfor %}
-            
-            {% if not posts %}
-            <p>No posts available.</p>
-            {% endif %}
+            <!-- Additional posts would be similarly structured -->
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-md-4">
+            <div class="sidebar">
+                <h3>Trending Ideas</h3>
+                <ul>
+                    <li><a href="#">Innovative AI Solutions</a></li>
+                    <li><a href="#">Sustainable Energy Projects</a></li>
+                    <li><a href="#">Tech for Good Initiatives</a></li>
+                </ul>
+            </div>
+            <div class="sidebar">
+                <h3>Who to Follow</h3>
+                <ul>
+                    <li><a href="#">Jane Smith</a></li>
+                    <li><a href="#">Tech Innovator</a></li>
+                    <li><a href="#">Creative Thinker</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+
+<script src="{{ url_for('static', filename='js/theme-toggle.js') }}"></script>
 {% endblock %}
