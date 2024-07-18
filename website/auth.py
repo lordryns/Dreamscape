@@ -30,8 +30,10 @@ def register():
                     password = password,
                     name = username # optional
                 )
+
                 
-                session_token = account.create_email_password_session(email, password)
+                session_token = account.create_email_password_session(email, password)['name']
+                print(session_token)
                 
                 is_error = False
                 is_success = True 

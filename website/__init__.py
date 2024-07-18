@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_session import Session
 
 from appwrite.client import Client
 from appwrite.services.account import Account
@@ -16,6 +17,10 @@ account = Account(client)
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = "fgnurr449KFNIifoge4prfff"
+    app.config["SESSION_PERMANENT"] = False
+    app.config["SESSION_TYPE"] = "filesystem"
+
+    Session(app)
 
     from .views import views
     from .auth import auth
