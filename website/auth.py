@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 import base64
 import uuid
 
@@ -6,7 +6,14 @@ auth = Blueprint( "auth", __name__)
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def register():
-    from . import account, client
+
+    if "id" not in session:
+        session["username"] = None 
+        session["email"] = None
+        session["id"] = None 
+        session["labels"] = None
+
+    from . import account, users
 
     error_message = ""
     is_error = False 
@@ -15,6 +22,7 @@ def register():
 
 
     if request.method == 'POST':
+
         username = request.form.get("username")
         email = request.form.get("email")
         password = request.form.get("password")
@@ -25,15 +33,24 @@ def register():
         if (len(password) >= 8):
             try:
                 result = account.create(
-                    user_id = str(base64_uuid),
+                    user_id = "unique()",
                     email = email,
                     password = password,
                     name = username # optional
                 )
 
                 
-                session_token = account.create_email_password_session(email, password)['name']
-                print(session_token)
+                session_token = account.create_email_password_session(email, password)
+                user = users.get(
+                    user_id = session_token['userId']
+                )
+
+                session["username"] = user['name']
+                session["email"] = user['email']
+                session["id"] = session_token['userId']
+                session["labels"] = user['labels']
+
+                print(user)
                 
                 is_error = False
                 is_success = True 
