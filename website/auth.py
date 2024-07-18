@@ -31,8 +31,8 @@ def register():
                     name = username # optional
                 )
                 
-                session_token = account.create_email_password_session(email, password)['session']
-                client.set_session(session_token)
+                session_token = account.create_email_password_session(email, password)
+                
                 is_error = False
                 is_success = True 
                 
@@ -46,5 +46,4 @@ def register():
             is_error = True
 
 
-        print(username, email, password)
     return render_template("register.html", error_message=error_message, is_error=is_error, is_success=is_success)

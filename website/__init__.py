@@ -3,7 +3,7 @@ from flask import Flask
 from appwrite.client import Client
 from appwrite.services.account import Account
 from appwrite.services.databases import Databases
-from appwrite.id import ID
+
 
 client = Client()
 client.set_endpoint('https://cloud.appwrite.io/v1')
