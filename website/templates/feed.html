@@ -20,14 +20,43 @@
         align-items: center;
         transition: background-color 0.3s, color 0.3s;
     }
-    .navbar a {
+    .navbar .nav-items {
+        display: flex;
+        align-items: center;
+    }
+    .navbar .nav-items a {
         color: var(--nav-text-color);
         margin: 0 10px;
         text-decoration: none;
         font-weight: bold;
-        font-size: 1.5em;
+        font-size: 1em;
+        display: flex;
+        align-items: center;
+        white-space: nowrap; /* Prevent text wrapping */
     }
-    .navbar a:hover {
+    .navbar .nav-items a i {
+        margin-right: 8px;
+    }
+    .navbar .nav-items a:hover {
+        text-decoration: underline;
+    }
+    .navbar .nav-auth {
+        display: flex;
+        align-items: center;
+    }
+    .navbar .nav-auth a {
+        color: var(--nav-text-color);
+        margin: 0 10px;
+        text-decoration: none;
+        font-size: 1em;
+        display: flex;
+        align-items: center;
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+    .navbar .nav-auth a i {
+        margin-right: 8px;
+    }
+    .navbar .nav-auth a:hover {
         text-decoration: underline;
     }
     .toggle-switch {
@@ -109,32 +138,41 @@
         font-size: 1em;
     }
     .post-footer {
-    display: flex;
-    flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.post-footer button {
-    background: none;
-    color: var(--link-color);
-    border: 2px solid var(--link-color);
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: color 0.3s, border-color 0.3s;
-    font-size: 0.9em; /* Slightly smaller font size for better fit */
-    margin-bottom: 10px; /* Margin between buttons when stacked */
-    flex: 1 1 100px; /* Allows buttons to grow and shrink, and set a minimum width */
-}
-
-.post-footer button:hover {
-    color: #fff;
-    background-color: var(--link-color);
-    border-color: var(--link-color);
-}
-
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .post-footer button {
+        background: none;
+        color: var(--link-color);
+        border: 2px solid var(--link-color);
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: color 0.3s, border-color 0.3s;
+        font-size: 0.9em;
+        margin-bottom: 10px;
+        flex: 1 1 100px;
+    }
+    .post-footer button:hover {
+        color: #fff;
+        background-color: var(--link-color);
+        border-color: var(--link-color);
+    }
+    :root {
+        --body-bg-color: #f0f8ff;
+        --body-text-color: #000;
+        --nav-bg-color: #333;
+        --nav-text-color: #fff;
+        --post-bg-color: #fff;
+        --post-text-color: #000;
+        --sidebar-bg-color: #fff;
+        --sidebar-text-color: #000;
+        --link-color: #007bff;
+        --post-meta-color: #6c757d;
+    }
     [data-theme="dark"] {
         --body-bg-color: #111;
         --body-text-color: #ddd;
@@ -151,15 +189,14 @@
 
 <!-- Navbar -->
 <nav class="navbar">
-    <div>
-        <a href="/" title="Home"><i class="fas fa-home"></i></a>
-        <a href="/profile" title="Profile"><i class="fas fa-user"></i></a>
-        <a href="/notifications" title="Notifications"><i class="fas fa-bell"></i></a>
-        <a href="/messages" title="Messages"><i class="fas fa-envelope"></i></a>
-        <a href="/settings" title="Settings"><i class="fas fa-cog"></i></a>
+    <div class="nav-items">
+        <a href="/" title="Home"><i class="fas fa-home"></i> Home</a>
+        <a href="/profile" title="Profile"><i class="fas fa-user"></i> Profile</a>
+        <a href="/notifications" title="Notifications"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="/messages" title="Messages"><i class="fas fa-envelope"></i> Messages</a>
+        <a href="/settings" title="Settings"><i class="fas fa-cog"></i> Settings</a>
     </div>
-    <div>
-        
+    <div class="nav-auth">
         <span class="toggle-switch" onclick="toggleTheme()"><i class="fas fa-moon"></i></span>
     </div>
 </nav>
