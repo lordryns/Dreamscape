@@ -3,11 +3,11 @@
 {% block title %}Feed{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
     body {
         font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
         background-color: var(--body-bg-color);
         color: var(--body-text-color);
         transition: background-color 0.3s, color 0.3s;
@@ -36,6 +36,39 @@
         color: var(--nav-text-color);
     }
     .container {
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+    }
+    .sidebar, .messages-sidebar {
+        background-color: var(--sidebar-bg-color);
+        color: var(--sidebar-text-color);
+        width: 20%;
+        padding: 20px;
+        overflow-y: auto;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .sidebar h3, .messages-sidebar h3 {
+        margin-top: 0;
+    }
+    .sidebar ul, .messages-sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .sidebar ul li, .messages-sidebar ul li {
+        margin-bottom: 10px;
+    }
+    .sidebar ul li a, .messages-sidebar ul li a {
+        text-decoration: none;
+        color: var(--link-color);
+        transition: color 0.3s;
+    }
+    .sidebar ul li a:hover, .messages-sidebar ul li a:hover {
+        text-decoration: underline;
+    }
+    .main-feed {
+        flex: 1;
+        overflow-y: auto;
         padding: 20px;
     }
     .post {
@@ -57,8 +90,23 @@
         height: 50px;
         margin-right: 10px;
     }
+    .post-header .post-info {
+        flex-grow: 1;
+    }
+    .post-header .post-info h5 {
+        margin: 0;
+        font-size: 1.2em;
+    }
+    .post-header .post-info small {
+        color: var(--post-meta-color);
+    }
+    .post-header .post-options {
+        margin-left: auto;
+        cursor: pointer;
+    }
     .post-content {
         margin-top: 10px;
+        font-size: 1em;
     }
     .post-footer {
         display: flex;
@@ -78,33 +126,6 @@
     .post-footer button:hover {
         background-color: #0056b3;
     }
-    .sidebar {
-        background-color: var(--sidebar-bg-color);
-        color: var(--sidebar-text-color);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-        transition: background-color 0.3s, color 0.3s;
-    }
-    .sidebar h3 {
-        margin-top: 0;
-    }
-    .sidebar ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    .sidebar ul li {
-        margin-bottom: 10px;
-    }
-    .sidebar ul li a {
-        text-decoration: none;
-        color: #007bff;
-        transition: color 0.3s;
-    }
-    .sidebar ul li a:hover {
-        text-decoration: underline;
-    }
     :root {
         --body-bg-color: #f0f8ff;
         --body-text-color: #000;
@@ -114,6 +135,8 @@
         --post-text-color: #000;
         --sidebar-bg-color: #fff;
         --sidebar-text-color: #000;
+        --link-color: #007bff;
+        --post-meta-color: #6c757d;
     }
     [data-theme="dark"] {
         --body-bg-color: #111;
@@ -124,6 +147,8 @@
         --post-text-color: #ddd;
         --sidebar-bg-color: #333;
         --sidebar-text-color: #ddd;
+        --link-color: #66b2ff;
+        --post-meta-color: #999;
     }
 </style>
 
@@ -137,55 +162,63 @@
         <a href="/settings" title="Settings"><i class="fas fa-cog"></i></a>
     </div>
     <div>
-       
+        <a href="/login" title="Log In"><i class="fas fa-sign-in-alt"></i></a>
+        <a href="/signup" title="Sign Up"><i class="fas fa-user-plus"></i></a>
         <span class="toggle-switch" onclick="toggleTheme()"><i class="fas fa-moon"></i></span>
     </div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-2 d-none d-md-block sidebar">
+            <h3>Trending Now</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-fire"></i> New Brand Has Release</a></li>
+                <li><a href="#"><i class="fas fa-tags"></i> Citayem Harajuku</a></li>
+                <li><a href="#"><i class="fas fa-box"></i> New Product</a></li>
+                <li><a href="#"><i class="fas fa-gem"></i> New NFT</a></li>
+            </ul>
+        </div>
+
         <!-- Main Feed -->
-        <div class="col-md-8">
+        <div class="col-md-8 main-feed">
             <div class="post">
                 <div class="post-header">
                     <img src="https://via.placeholder.com/50" alt="User Avatar">
-                    <div>
+                    <div class="post-info">
                         <h5>John Doe</h5>
                         <small>2 hours ago</small>
+                    </div>
+                    <div class="post-options">
+                        <i class="fas fa-ellipsis-h"></i>
                     </div>
                 </div>
                 <div class="post-content">
                     <p>This is a sample post content. Share your ideas, projects, and collaborate with others!</p>
+                    <img src="https://via.placeholder.com/600x400" alt="Post Image" style="width: 100%; margin-top: 10px; border-radius: 10px;">
                 </div>
                 <div class="post-footer">
-                    <button>Like</button>
-                    <button>Comment</button>
-                    <button>Share</button>
+                    <button><i class="fas fa-thumbs-up"></i> Like</button>
+                    <button><i class="fas fa-comment"></i> Comment</button>
+                    <button><i class="fas fa-share"></i> Share</button>
                 </div>
             </div>
             <!-- Additional posts would be similarly structured -->
         </div>
 
-        <!-- Sidebar -->
-        <div class="col-md-4">
-            <div class="sidebar">
-                <h3>Trending Ideas</h3>
-                <ul>
-                    <li><a href="#">Innovative AI Solutions</a></li>
-                    <li><a href="#">Sustainable Energy Projects</a></li>
-                    <li><a href="#">Tech for Good Initiatives</a></li>
-                </ul>
-            </div>
-            <div class="sidebar">
-                <h3>Who to Follow</h3>
-                <ul>
-                    <li><a href="#">Jane Smith</a></li>
-                    <li><a href="#">Tech Innovator</a></li>
-                    <li><a href="#">Creative Thinker</a></li>
-                </ul>
-            </div>
+        <!-- Messages Sidebar -->
+        <div class="col-md-2 d-none d-md-block messages-sidebar">
+            <h3>Messages</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-user-circle"></i> Terito</a></li>
+                <li><a href="#"><i class="fas fa-user-circle"></i> Hatoy</a></li>
+                <li><a href="#"><i class="fas fa-user-circle"></i> Leonard</a></li>
+                <li><a href="#"><i class="fas fa-user-circle"></i> Ruby</a></li>
+            </ul>
         </div>
     </div>
 </div>
 
+<script src="{{ url_for('static', filename='js/theme-toggle.js') }}"></script>
 {% endblock %}
